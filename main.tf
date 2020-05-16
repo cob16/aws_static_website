@@ -4,6 +4,8 @@ terraform {
   required_providers {
     aws = "~> 2.62"
   }
+
+  backend "s3" {}
 }
 
 provider "aws" {}
@@ -18,7 +20,7 @@ module "label" {
   version = "0.16.0"
 
   namespace = var.namespace
-  stage     = terraform.workspace
+  stage     = "prod"
   name      = "personal-website"
   delimiter = "-"
 

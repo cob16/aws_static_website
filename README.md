@@ -13,6 +13,7 @@ A cloudfront hosted website that uses a private s3 backend
 - An AWS account
 
 # Setup
+- Remove line 8 in `main.tf` `backend.s3` 
 - copy the example tfvars file and edit
 ```bash
 cp example.tvars terraform.tfvars
