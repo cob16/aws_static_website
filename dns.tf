@@ -17,6 +17,18 @@ resource "aws_route53_record" "main-a-record" {
   }
 }
 
+resource "aws_route53_record" "main-aaaa-record" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = ""
+  type    = "AAAA"
+
+  alias {
+    name                   = aws_cloudfront_distribution.www_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.www_distribution.hosted_zone_id
+    evaluate_target_health = false
+  }
+}
+
 resource "aws_route53_record" "www-a-record" {
   zone_id = aws_route53_zone.main.zone_id
   name    = "www"
@@ -35,6 +47,17 @@ resource "aws_route53_record" "extra_a_records" {
   zone_id = aws_route53_zone.main.zone_id
   ttl     = var.dns_ttl
   type    = "A"
+
+  name    = each.key
+  records = each.value
+}
+
+resource "aws_route53_record" "extra_aaaa_records" {
+  for_each = var.extra_aaaa_records
+
+  zone_id = aws_route53_zone.main.zone_id
+  ttl     = var.dns_ttl
+  type    = "AAAA"
 
   name    = each.key
   records = each.value

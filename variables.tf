@@ -18,6 +18,11 @@ variable "extra_a_records" {
   default = {}
 }
 
+variable "extra_aaaa_records" {
+  type    = map(list(string))
+  default = {}
+}
+
 variable "email_mx_records" {
   type        = list(string)
   description = "e.g '['10 mainserver', '20 secondserver']' "

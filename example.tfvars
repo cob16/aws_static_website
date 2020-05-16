@@ -13,3 +13,6 @@ extra_txt_records = {
 extra_a_records = {
   "subdomain" : ["192.0.2.0"]
 }
+extra_aaaa_records = {
+  "subdomain" : ["2001:0db8::0001:0000"]
+}
