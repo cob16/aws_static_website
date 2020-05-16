@@ -4,7 +4,8 @@ variable "namespace" {
 }
 
 variable "website_name" {
-  type = string
+  type        = string
+  description = "e.g example.com"
 }
 
 variable dns_ttl {
