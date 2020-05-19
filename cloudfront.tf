@@ -1,6 +1,6 @@
 resource "aws_cloudfront_distribution" "www_distribution" {
   provider = aws.us_east_1
-  tags = module.label.tags
+  tags     = module.label.tags
 
   price_class = "PriceClass_100"
 
@@ -47,9 +47,10 @@ resource "aws_cloudfront_distribution" "www_distribution" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = false
+    cloudfront_default_certificate = true
     acm_certificate_arn            = aws_acm_certificate.certificate.arn
     ssl_support_method             = "sni-only"
+    minimum_protocol_version       = "TLSv1.2_2018"
   }
 
   depends_on = [aws_acm_certificate.certificate]
