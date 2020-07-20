@@ -8,6 +8,8 @@ A cloudfront hosted website that uses a private s3 backend
                     +------+       +--------------+      +------+
 ```
 
+On a AWS free account this will cost arround $0.60 per month (not including domain registration)
+
 # Perquisites
 - Terraform (+v0.12)
 - An AWS account
