@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "website" {
   bucket = var.website_name
   acl    = "private"
 
-  tags = module.label.tags
+  tags = var.tags
 
   versioning {
     enabled = false
@@ -43,5 +43,5 @@ data "aws_iam_policy_document" "public_read_for_get_bucket_objects" {
 }
 
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
-  comment = module.label.id
+  comment = var.prefix
 }
