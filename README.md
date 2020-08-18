@@ -1,4 +1,6 @@
 # A static website
+On a AWS free account this will cost around $0.60 per month (not including domain registration)
+
 A cloudfront hosted website that uses a private s3 backend
 ```
                     +------+       +--------------+      +------+
@@ -8,11 +10,20 @@ A cloudfront hosted website that uses a private s3 backend
                     +------+       +--------------+      +------+
 ```
 
-On a AWS free account this will cost arround $0.60 per month (not including domain registration)
+## And some monitoring 
+Cloudwatch billing and usage alerts to pager duty based of customisable thresholds
+```
+                    +------------+       +-------+      +-------------+
+                    |            |       |       |      |             |
+                    | Cloudwatch | +---> |  SNS  | +--> |  Pagerduty  |
+                    |            |       |       |      |             |
+                    +------------+       +-------+      +-------------+
+```
 
 # Prerequisities
 - Terraform (+v0.12)
-- An AWS account
+- An AWS account (free tier)
+- Pagerduty account (free tier)
 
 # Setup
 - Remove line 8 in `main.tf` `backend.s3` 

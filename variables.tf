@@ -38,3 +38,7 @@ variable "extra_txt_records" {
   type    = map(list(string))
   default = {}
 }
+
+variable "pagerduty_token" {
+  type = string
+}
