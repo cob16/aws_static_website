@@ -32,7 +32,7 @@ resource "aws_cloudwatch_metric_alarm" "six-hour-billing-warning" {
   tags = var.tags
 }
 
-resource "aws_cloudwatch_metric_alarm" "cloudfront-free-tier-limit" {
+resource "aws_cloudwatch_metric_alarm" "cloudfront-free-tier-request-limit" {
   alarm_name          = "Cloudfront free requests limit"
   comparison_operator = "GreaterThanThreshold"
   threshold           = 66000 //2 million requests per month on the free tear, devided over 30 days
@@ -50,6 +50,35 @@ resource "aws_cloudwatch_metric_alarm" "cloudfront-free-tier-limit" {
     Region         = "Global"
   }
 
+
+  alarm_actions = [
+    var.cloudwatch_general_alarm_sns_arn
+  ]
+  ok_actions = [
+    var.cloudwatch_general_alarm_sns_arn
+  ]
+
+  tags = var.tags
+}
+
+resource "aws_cloudwatch_metric_alarm" "cloudfront-free-tier-data-limit" {
+  alarm_name          = "Cloudfront free data limit"
+  alarm_description   = "50gb is free per month. cloudwatch alarms can only be over 1 day so (50gb divided by 30 days = 1.6gb"
+  comparison_operator = "GreaterThanThreshold"
+  threshold           = 1600000000 //50gb divided by 30 days in bytes
+
+  datapoints_to_alarm = 1
+  evaluation_periods  = 1
+  period              = 86400
+  statistic           = "Sum"
+  treat_missing_data  = "missing"
+
+  namespace   = "AWS/CloudFront"
+  metric_name = "BytesDownloaded"
+  dimensions = {
+    DistributionId = var.distribution_id
+    Region         = "Global"
+  }
 
   alarm_actions = [
     var.cloudwatch_general_alarm_sns_arn
