@@ -91,3 +91,14 @@ resource "aws_route53_record" "extra_txt_records" {
   name    = each.key
   records = each.value
 }
+
+resource "aws_route53_record" "extra_cname_records" {
+  for_each = var.extra_cname_records
+
+  zone_id = aws_route53_zone.main.zone_id
+  type    = "CNAME"
+  ttl     = var.dns_ttl
+
+  name    = each.key
+  records = each.value
+}

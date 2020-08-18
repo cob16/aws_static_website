@@ -39,6 +39,10 @@ variable "extra_txt_records" {
   default = {}
 }
 
+variable "extra_cname_records" {
+  type = map(list(string))
+}
+
 variable "pagerduty_token" {
   type = string
 }

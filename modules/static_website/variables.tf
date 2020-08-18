@@ -17,19 +17,16 @@ variable "website_name" {
 }
 
 variable dns_ttl {
-  default     = 300
   type        = number
   description = "The Time To Live of all records."
 }
 
 variable "extra_a_records" {
-  type    = map(list(string))
-  default = {}
+  type = map(list(string))
 }
 
 variable "extra_aaaa_records" {
-  type    = map(list(string))
-  default = {}
+  type = map(list(string))
 }
 
 variable "email_mx_records" {
@@ -43,6 +40,9 @@ variable "main_txt_records" {
 }
 
 variable "extra_txt_records" {
-  type    = map(list(string))
-  default = {}
+  type = map(list(string))
+}
+
+variable "extra_cname_records" {
+  type = map(list(string))
 }

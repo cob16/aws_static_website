@@ -45,10 +45,15 @@ module "static_website" {
   prefix = module.label.id
   tags   = module.label.tags
 
-  email_mx_records = var.email_mx_records
-  main_txt_records = var.main_txt_records
-  namespace        = var.namespace
-  website_name     = var.website_name
+  namespace           = var.namespace
+  website_name        = var.website_name
+  dns_ttl             = var.dns_ttl
+  email_mx_records    = var.email_mx_records
+  main_txt_records    = var.main_txt_records
+  extra_a_records     = var.extra_a_records
+  extra_aaaa_records  = var.extra_aaaa_records
+  extra_txt_records   = var.extra_txt_records
+  extra_cname_records = var.extra_cname_records
 }
 
 data "aws_caller_identity" "current" {}
