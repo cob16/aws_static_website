@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 0.13"
+  required_version = ">= 0.14"
 
   required_providers {
     aws = {
@@ -23,7 +23,6 @@ provider "aws" {
 }
 
 provider "pagerduty" {
-  version = "1.7.9"
   token   = var.pagerduty_token
 }
 
