@@ -1,8 +1,15 @@
 terraform {
-  required_version = ">= 0.12.29"
+  required_version = ">= 0.13"
 
   required_providers {
-    aws = "~> 2.62"
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.2.0"
+    }
+    pagerduty = {
+      source = "pagerduty/pagerduty"
+      version = "~> 1.8.0"
+    }
   }
 
   backend "s3" {}
@@ -22,7 +29,7 @@ provider "pagerduty" {
 
 module "label" {
   source  = "cloudposse/label/null"
-  version = "0.16.0"
+  version = "0.22.1"
 
   namespace = var.namespace
   stage     = "prod"
