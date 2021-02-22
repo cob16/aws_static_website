@@ -7,7 +7,7 @@ terraform {
       version = "~> 3.2.0"
     }
     pagerduty = {
-      source = "pagerduty/pagerduty"
+      source  = "pagerduty/pagerduty"
       version = "~> 1.8.0"
     }
   }
@@ -23,7 +23,7 @@ provider "aws" {
 }
 
 provider "pagerduty" {
-  token   = var.pagerduty_token
+  token = var.pagerduty_token
 }
 
 module "label" {

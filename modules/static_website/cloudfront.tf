@@ -53,5 +53,19 @@ resource "aws_cloudfront_distribution" "www_distribution" {
     minimum_protocol_version       = "TLSv1.2_2018"
   }
 
+  custom_error_response {
+    error_caching_min_ttl = 300
+    error_code            = 400
+    response_code         = 404
+    response_page_path    = "/404.html"
+  }
+
+  custom_error_response {
+    error_caching_min_ttl = 300
+    error_code            = 403
+    response_code         = 404
+    response_page_path    = "/404.html"
+  }
+
   depends_on = [aws_acm_certificate.certificate]
 }

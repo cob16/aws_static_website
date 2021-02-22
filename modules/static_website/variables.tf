@@ -16,7 +16,7 @@ variable "website_name" {
   description = "e.g example.com"
 }
 
-variable dns_ttl {
+variable "dns_ttl" {
   type        = number
   description = "The Time To Live of all records."
 }
