@@ -15,11 +15,18 @@ terraform {
   backend "s3" {}
 }
 
-provider "aws" {}
+provider "aws" {
+  default_tags {
+    tags = module.label.tags
+  }
+}
 
 provider "aws" {
   region = "us-east-1"
   alias  = "us_east_1"
+  default_tags {
+    tags = module.label.tags
+  }
 }
 
 provider "pagerduty" {
@@ -28,7 +35,7 @@ provider "pagerduty" {
 
 module "label" {
   source  = "cloudposse/label/null"
-  version = "0.22.1"
+  version = "0.24.1"
 
   namespace = var.namespace
   stage     = "prod"
@@ -49,7 +56,6 @@ module "static_website" {
   }
 
   prefix = module.label.id
-  tags   = module.label.tags
 
   namespace           = var.namespace
   website_name        = var.website_name
@@ -73,7 +79,6 @@ module "general_alarms_sns" {
 
   name       = "${module.label.id}-general-alarms"
   account_id = data.aws_caller_identity.current.account_id
-  tags       = module.label.tags
 }
 
 module "website_monitoring" {
@@ -84,7 +89,6 @@ module "website_monitoring" {
   }
 
   prefix = module.label.id
-  tags   = module.label.tags
 
   account_id                       = data.aws_caller_identity.current.account_id
   distribution_id                  = module.static_website.distribution_id

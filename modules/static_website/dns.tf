@@ -1,8 +1,6 @@
 resource "aws_route53_zone" "main" {
   name    = var.website_name
   comment = "Managed by Terraform"
-
-  tags = var.tags
 }
 
 resource "aws_route53_record" "main-a-record" {

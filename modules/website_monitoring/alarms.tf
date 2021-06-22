@@ -28,8 +28,6 @@ resource "aws_cloudwatch_metric_alarm" "six-hour-billing-warning" {
   ok_actions = [
     var.cloudwatch_general_alarm_sns_arn
   ]
-
-  tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "cloudfront-free-tier-request-limit" {
@@ -57,8 +55,6 @@ resource "aws_cloudwatch_metric_alarm" "cloudfront-free-tier-request-limit" {
   ok_actions = [
     var.cloudwatch_general_alarm_sns_arn
   ]
-
-  tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "cloudfront-free-tier-data-limit" {
@@ -86,6 +82,4 @@ resource "aws_cloudwatch_metric_alarm" "cloudfront-free-tier-data-limit" {
   ok_actions = [
     var.cloudwatch_general_alarm_sns_arn
   ]
-
-  tags = var.tags
 }

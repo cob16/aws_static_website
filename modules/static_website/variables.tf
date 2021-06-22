@@ -2,10 +2,6 @@ variable "prefix" {
   type = string
 }
 
-variable "tags" {
-  type = map(string)
-}
-
 variable "namespace" {
   description = "A short unique string wihout spechas chars that is used to name resouces e.g your name"
   type        = string

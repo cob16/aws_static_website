@@ -1,6 +1,5 @@
 resource "aws_cloudfront_distribution" "www_distribution" {
   provider = aws.us_east_1
-  tags     = var.tags
 
   price_class = "PriceClass_100"
 

@@ -1,6 +1,5 @@
 resource "aws_sns_topic" "this" {
   name = var.name
-  tags = var.tags
 }
 
 resource "aws_sns_topic_policy" "default" {

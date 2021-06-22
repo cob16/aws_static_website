@@ -12,8 +12,6 @@ resource "aws_s3_bucket" "website" {
   bucket = var.website_name
   acl    = "private"
 
-  tags = var.tags
-
   versioning {
     enabled = false
   }
