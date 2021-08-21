@@ -29,7 +29,7 @@ Cloudwatch billing and usage alerts to pager duty based of customisable threshol
 - Remove line 8 in `main.tf` `backend.s3` 
 - copy the example tfvars file and edit
 ```bash
-cp example.tvars terraform.tfvars
+cp example.tfvars terraform.tfvars
 ```
 - edit `terraform.tfvars` to fit your needs 
 
