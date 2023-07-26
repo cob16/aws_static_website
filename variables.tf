@@ -46,3 +46,7 @@ variable "extra_cname_records" {
 variable "pagerduty_token" {
   type = string
 }
+
+variable "estimated_billing_threshold" {
+  type = string
+}

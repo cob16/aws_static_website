@@ -88,7 +88,8 @@ module "website_monitoring" {
     aws = aws.us_east_1
   }
 
-  prefix = module.label.id
+  prefix                      = module.label.id
+  estimated_billing_threshold = var.estimated_billing_threshold
 
   account_id                       = data.aws_caller_identity.current.account_id
   distribution_id                  = module.static_website.distribution_id
