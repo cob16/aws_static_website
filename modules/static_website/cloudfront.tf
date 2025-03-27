@@ -47,7 +47,7 @@ resource "aws_cloudfront_distribution" "www_distribution" {
 
   viewer_certificate {
     cloudfront_default_certificate = false
-    acm_certificate_arn            = aws_acm_certificate.certificate.arn
+    acm_certificate_arn            = aws_acm_certificate_validation.main.certificate_arn
     ssl_support_method             = "sni-only"
     minimum_protocol_version       = "TLSv1.2_2021"
   }
@@ -65,7 +65,5 @@ resource "aws_cloudfront_distribution" "www_distribution" {
     response_code         = 404
     response_page_path    = "/404.html"
   }
-
-  depends_on = [aws_acm_certificate.certificate]
 }
 
