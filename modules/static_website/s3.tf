@@ -10,11 +10,6 @@ resource "aws_s3_bucket_public_access_block" "website" {
 
 resource "aws_s3_bucket" "website" {
   bucket = var.website_name
-  acl    = "private"
-
-  versioning {
-    enabled = false
-  }
 }
 
 resource "aws_s3_bucket_policy" "public_read_for_get_bucket_objects" {
