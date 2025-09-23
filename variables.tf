@@ -47,6 +47,14 @@ variable "pagerduty_token" {
   type = string
 }
 
+variable "alert_email" {
+  type = string
+  validation {
+    condition     = can(regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", var.alert_email))
+    error_message = "Invalid email address"
+  }
+}
+
 variable "estimated_billing_threshold" {
   type = string
 }

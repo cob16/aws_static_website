@@ -107,3 +107,15 @@ module "pagerduty" {
   website_name = var.website_name
   sns_topic    = module.general_alarms_sns.arn
 }
+
+resource "aws_sns_topic_subscription" "email_alerts" {
+  provider = aws.us_east_1
+
+  protocol  = "email"
+  topic_arn = module.general_alarms_sns.arn
+  endpoint  = var.alert_email
+
+  lifecycle {
+    prevent_destroy = true //warning terraform cannot destroy unconfirmed email subs. Manually cleanup if you need to recreate
+  }
+}
