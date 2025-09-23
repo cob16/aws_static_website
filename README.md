@@ -21,7 +21,7 @@ Cloudwatch billing and usage alerts to pager duty based of customisable threshol
 ```
 
 # Prerequisities
-- Terraform (+v0.12)
+- Terraform (+v0.13)
 - An AWS account (free tier)
 - Pagerduty account (free tier)
 
