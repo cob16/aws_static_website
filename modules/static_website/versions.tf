@@ -6,5 +6,5 @@ terraform {
       configuration_aliases = [aws, aws.us_east_1]
     }
   }
-  required_version = ">= 1.11.3"
+  required_version = "~> 1.13.3"
 }
