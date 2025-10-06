@@ -1,5 +1,6 @@
 resource "aws_sns_topic" "this" {
-  name = var.name
+  name              = var.name
+  kms_master_key_id = "alias/aws/sns"
 }
 
 resource "aws_sns_topic_policy" "default" {
