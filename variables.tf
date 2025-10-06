@@ -55,6 +55,6 @@ variable "alert_email" {
   }
 }
 
-variable "estimated_billing_threshold" {
+variable "billing_alarm_threshold" {
   type = string
 }

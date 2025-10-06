@@ -1,13 +1,7 @@
-variable "estimated_billing_threshold" {
-  description = "the cost in $ of when to fire an alert"
-  type        = number
-  default     = 2
-}
-
 resource "aws_cloudwatch_metric_alarm" "six-hour-billing-warning" {
   alarm_name          = "High Billing Estimate"
   comparison_operator = "GreaterThanThreshold"
-  threshold           = var.estimated_billing_threshold
+  threshold           = var.billing_alarm_threshold
 
   datapoints_to_alarm = 1
   evaluation_periods  = 1

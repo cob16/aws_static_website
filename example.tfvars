@@ -16,6 +16,6 @@ extra_a_records = {
 extra_aaaa_records = {
   "subdomain" : ["2001:0db8::0001:0000"]
 }
-pagerduty_token             = "API KEY FOR PAGERDUTY https://support.pagerduty.com/docs/generating-api-keys#section-generating-a-general-access-rest-api-key"
-alert_email                 = "placeholder@example.com CHANGEME"
-estimated_billing_threshold = 5
+pagerduty_token         = "API KEY FOR PAGERDUTY https://support.pagerduty.com/docs/generating-api-keys#section-generating-a-general-access-rest-api-key"
+alert_email             = "placeholder@example.com CHANGEME"
+billing_alarm_threshold = 5

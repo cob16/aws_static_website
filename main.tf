@@ -88,8 +88,8 @@ module "website_monitoring" {
     aws = aws.us_east_1
   }
 
-  prefix                      = module.label.id
-  estimated_billing_threshold = var.estimated_billing_threshold
+  prefix                  = module.label.id
+  billing_alarm_threshold = var.billing_alarm_threshold
 
   account_id                       = data.aws_caller_identity.current.account_id
   distribution_id                  = module.static_website.distribution_id
@@ -106,6 +106,13 @@ module "pagerduty" {
 
   website_name = var.website_name
   sns_topic    = module.general_alarms_sns.arn
+}
+
+module "budget" {
+  source = "./modules/budget"
+
+  alert_email             = var.alert_email
+  billing_alarm_threshold = var.billing_alarm_threshold
 }
 
 resource "aws_sns_topic_subscription" "email_alerts" {
