@@ -4,3 +4,4 @@ index.html
 terraform.tfvars
 terraform.tfstate
 backend.hcl
+*.zip

@@ -19,8 +19,17 @@ Cloudwatch billing and usage alerts to pager duty based of customisable threshol
                     |            |       |       |      |             |
                     +------------+       +-------+      +-------------+
 ```
+## And finally some overbilling protections 
+If actual or forecasted budget is exceeded an email is sent and the static website shutdown automatically  
+```
+            +------------+       +-------+      +-------------+      +-------------+
+            |            |       |       |      |             |      |             |
+            |  Budgets   | +---> |  SNS  | +--> |   Lambda    | +--> |  CloudFront |
+            |            |       |       |      |             |      |             |
+            +------------+       +-------+      +-------------+      +-------------+
+```
 
-# Prerequisities
+# Prerequisites
 - Terraform (+v0.13)
 - An AWS account (free tier)
 - Pagerduty account (free tier)

@@ -71,7 +71,7 @@ module "static_website" {
 data "aws_caller_identity" "current" {}
 
 module "general_alarms_sns" {
-  source = "./modules/sns_topic"
+  source = "./modules/cloudwatch_alarm_sns_topic"
 
   providers = {
     aws = aws.us_east_1
@@ -108,11 +108,23 @@ module "pagerduty" {
   sns_topic    = module.general_alarms_sns.arn
 }
 
+module "cloudfront_distribution_disable_lambda" {
+  providers = {
+    aws = aws.us_east_1
+  }
+
+  source                     = "./modules/cloudfront_distribution_disable_lambda"
+  account_id                 = data.aws_caller_identity.current.account_id
+  website_name               = var.website_name
+  cloudfront_distribution_id = module.static_website.distribution_id
+}
+
 module "budget" {
   source = "./modules/budget"
 
-  alert_email             = var.alert_email
-  billing_alarm_threshold = var.billing_alarm_threshold
+  alert_email               = var.alert_email
+  billing_alarm_threshold   = var.billing_alarm_threshold
+  over_budget_sns_topic_arn = module.cloudfront_distribution_disable_lambda.sns_topic_arn
 }
 
 resource "aws_sns_topic_subscription" "email_alerts" {
