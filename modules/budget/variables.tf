@@ -11,3 +11,7 @@ variable "alert_email" {
     error_message = "Invalid email address"
   }
 }
+
+variable "over_budget_sns_topic_arn" {
+  type = string
+}

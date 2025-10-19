@@ -20,7 +20,7 @@ resource "aws_budgets_budget" "primary" {
     comparison_operator        = "GREATER_THAN"
     notification_type          = "ACTUAL"
     subscriber_email_addresses = [var.alert_email]
-    subscriber_sns_topic_arns  = []
+    subscriber_sns_topic_arns  = [var.over_budget_sns_topic_arn]
     threshold                  = 100
     threshold_type             = "PERCENTAGE"
   }
@@ -28,7 +28,7 @@ resource "aws_budgets_budget" "primary" {
     comparison_operator        = "GREATER_THAN"
     notification_type          = "FORECASTED"
     subscriber_email_addresses = [var.alert_email]
-    subscriber_sns_topic_arns  = []
+    subscriber_sns_topic_arns  = [var.over_budget_sns_topic_arn]
     threshold                  = 100
     threshold_type             = "PERCENTAGE"
   }
