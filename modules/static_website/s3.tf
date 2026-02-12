@@ -20,11 +20,11 @@ resource "aws_s3_bucket_policy" "public_read_for_get_bucket_objects" {
 data "aws_iam_policy_document" "public_read_for_get_bucket_objects" {
   version = "2008-10-17"
   statement {
-    sid    = "PublicReadForGetBucketObjects"
+    sid    = "AllowCloudFrontServicePrincipalReadOnly"
     effect = "Allow"
     principals {
-      identifiers = [aws_cloudfront_origin_access_identity.origin_access_identity.iam_arn]
-      type        = "AWS"
+      identifiers = ["cloudfront.amazonaws.com"]
+      type        = "Service"
     }
     actions = [
       "s3:GetObject"
@@ -32,9 +32,13 @@ data "aws_iam_policy_document" "public_read_for_get_bucket_objects" {
     resources = [
       "${aws_s3_bucket.website.arn}/*"
     ]
-  }
-}
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
 
-resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
-  comment = var.prefix
+      values = [
+        aws_cloudfront_distribution.www_distribution.arn
+      ]
+    }
+  }
 }
