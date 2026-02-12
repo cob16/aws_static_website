@@ -2,7 +2,7 @@ resource "aws_cloudfront_distribution" "www_distribution" {
   provider = aws.us_east_1
 
   price_class = "PriceClass_All"
-  web_acl_id  =  null //aws will create and manage this automaticly
+  web_acl_id  = null //aws will create and manage this automaticly
 
   // origin is where CloudFront gets its content from.
   origin {

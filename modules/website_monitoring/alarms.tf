@@ -27,7 +27,7 @@ resource "aws_cloudwatch_metric_alarm" "six-hour-billing-warning" {
 resource "aws_cloudwatch_metric_alarm" "cloudfront-free-tier-request-limit" {
   alarm_name          = "Cloudfront free requests limit"
   comparison_operator = "GreaterThanThreshold"
-  threshold           = 66000 //2 million requests per month on the free tear, devided over 30 days
+  threshold           = 33000 //1 million requests per month on the free tear, devided over 30 days
 
   datapoints_to_alarm = 1
   evaluation_periods  = 1
@@ -55,7 +55,7 @@ resource "aws_cloudwatch_metric_alarm" "cloudfront-free-tier-data-limit" {
   alarm_name          = "Cloudfront free data limit"
   alarm_description   = "50gb is free per month. cloudwatch alarms can only be over 1 day so (50gb divided by 30 days = 1.6gb"
   comparison_operator = "GreaterThanThreshold"
-  threshold           = 1600000000 //50gb divided by 30 days in bytes
+  threshold           = 3200000000 //100gb divided by 30 days in bytes
 
   datapoints_to_alarm = 1
   evaluation_periods  = 1
